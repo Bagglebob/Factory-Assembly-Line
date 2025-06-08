@@ -1,2 +1,8 @@
 .vs/
-x64/
+*.obj
+*.exe
+WS04.sln
+WS04.vcxproj
+WS04.vcxproj.filters
+WS04.vcxproj.user
+Debug/
