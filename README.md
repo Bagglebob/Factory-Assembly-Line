@@ -1,56 +1,15 @@
 # Workshop #4: Factory Assembly Line
 
-The purpose of this workshop is to put your C++ Object Oriented skills to practice by developing a simulation of an assembly line with any number of stations. A line with 3 Stations is illustrated in the figure below.
+This assembly line solution consists of a set of workstations each of which holds a set of stock items, which are specific to the station. 
+A line manager moves customer orders along the line filling the orders at each station, as requested. 
+Each customer order consists of a list of items that need to be filled. 
+Each station processes a queue of orders by filling the next order in the queue if that order requests the station's item and that item is in stock. 
+The line manager keeps moving the customer orders from station to station until all orders have been processed. 
+Any station that has used all the items in stock cannot fill any more orders. 
+At the end of the line orders are either completed or incomplete due to a lack of inventory at one or more stations. 
+The simulator lists the completed orders and those that are incomplete once the line manager has finished processing all orders.
 
 ![Assembly Line](assemblyline.jpg)
-
-The assembly line in your solution consists of a set of workstations each of which holds a set of stock items, which are specific to the station. A line manager moves customer orders along the line filling the orders at each station, as requested. Each customer order consists of a list of items that need to be filled. Each station processes a queue of orders by filling the next order in the queue if that order requests the station's item and that item is in stock. The line manager keeps moving the customer orders from station to station until all orders have been processed. Any station that has used all the items in stock cannot fill any more orders. At the end of the line orders are either completed or incomplete due to a lack of inventory at one or more stations. The simulator lists the completed orders and those that are incomplete once the line manager has finished processing all orders.
-
-The workshop is divided into 3 testers to help guide you through implementation, debugging and execution.  Each tester will focus on different aspects/classes of your solution. For full credit, you must have three submissions (one with each tester); however it is possible to get partial marks by submitting using only some testers.
-
-This application is more complex than previous workshops and **will put your debugging skills to full use**.
-
-
-| Submission using tester | Max (%) |
-| ----------------------- | ------- |
-| #1                      |  20%    |
-| #2                      |  30%    |
-| #3                      |  50%    |
-
-
-
-All of your source code, including externally linked variables, should be in the `seneca` namespace. Use class declarations in header files wherever appropriate.
-
-
-## Compiling and Testing Your Program
-
-All your code should be compiled using this command on `matrix`:
-
-```bash
-/usr/local/gcc/10.2.0/bin/g++ -Wall -std=c++17 -g -o ws file1.cpp file2.cpp ...
-```
-
-- `-Wall`: compiler will report all warnings
-- `-std=c++17`: the code will be compiled using the C++17 standard
-- `-g`: the executable file will contain debugging symbols, allowing *valgrind* to create better reports
-- `-o ws`: the compiled application will be named `ws`
-
-After compiling and testing your code, run your program as following to check for possible memory leaks (assuming your executable name is `ws`):
-
-```bash
-valgrind --show-error-list=yes --leak-check=full --show-leak-kinds=all --track-origins=yes ws
-```
-
-- `--show-error-list=yes`: show the list of detected errors
-- `--leak-check=full`: check for all types of memory problems
-- `--show-leak-kinds=all`: show all types of memory leaks identified (enabled by the previous flag)
-- `--track-origins=yes`: tracks the origin of uninitialized values (`g++` must use `-g` flag for compilation, so the information displayed here is meaningful).
-
-To check the output, use a program that can compare text files.  Search online for such a program for your platform, or use `diff` available on `matrix`.
-
-
-
-
 
 
 # Factory Assembly Line
@@ -58,9 +17,10 @@ To check the output, use a program that can compare text files.  Search online f
 ## Tester Modules
 
 To test your application, you are provided with 3 different tester modules (do not modify any of them them):
-- `tester_1`: will focus on the functionality offered by the `Utilities` and `Station` modules.
-- `tester_2`: will focus on the functionality offered by the `CustomerOrder` module, and make use of the functionality offered by the previous modules.
-- `tester_3`: will focus on the functionality offered by the `Workstation` and `LineManager` modules, and make use of the functionality offered by the previous modules.  **Passing the tests performed by `tester_3` will require very strong debugging skills** and a deep understanding of how the assembly line works; discuss at the lab with your professor.
+- `tester_1`: focused on the functionality offered by the `Utilities` and `Station` modules.
+- `tester_2`: focused on the functionality offered by the `CustomerOrder` module, and make use of the functionality offered by the previous modules.
+- `tester_3`: focused on the functionality offered by the `Workstation` and `LineManager` modules, and make use of the functionality offered by the previous modules.  
+- **Passing the tests performed by `tester_3` required very strong debugging skills** and a deep understanding of how the assembly line works.
 
 For each tester, the expected sample output is provided. Look in each file for the command line necessary to start the application and the expected output.
 
@@ -153,53 +113,6 @@ The `Station` class has the following structure:
     - this function terminates the printed message with an endline
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## `CustomerOrder` Module
 
 The `CustomerOrder` module contains all the functionality for processing customer orders as they move from `Station` to `Station` along the assembly line. The `Station` where a given order currently rests fills a request for one item of that station, if there is any such request. 
@@ -267,50 +180,6 @@ struct Item
     - `ITEM_NAME` - a field of size `m_widthField`
     - `STATUS` is either `FILLED` or `TO BE FILLED`
     - you must use IO manipulators to format this output.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ## `Workstation` Module
