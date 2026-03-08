@@ -1,4 +1,4 @@
-# Workshop #4: Factory Assembly Line
+# Factory Assembly Line
 
 This assembly line solution consists of a set of workstations each of which holds a set of stock items, which are specific to the station. 
 A line manager moves customer orders along the line filling the orders at each station, as requested. 
